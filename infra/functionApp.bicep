@@ -231,10 +231,14 @@ resource fncapp 'Microsoft.Web/sites@2021-02-01' = {
                 }
                 // OpenAPI
                 {
+                    name: 'OpenApi__Version'
+                    value: 'v3'
+                }
+                {
                     name: 'OpenApi__HostNames'
                     value: 'https://${functionApp.name}.azurewebsites.net/api'
                 }
-                // NHN Toast
+                // NHN Cloud
                 {
                     name: 'Toast__BaseUrl'
                     value: 'https://api-sms.cloud.toast.com/'
