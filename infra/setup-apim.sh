@@ -2,6 +2,9 @@
 
 set -e
 
+# Set a pause for 30 secs before continuing
+sleep 30
+
 declare -a fncapp_suffixes
 suffix_index=1
 
