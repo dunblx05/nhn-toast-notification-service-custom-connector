@@ -48,7 +48,7 @@ namespace Toast.Sms.Triggers
         [OpenApiOperation(operationId: "SMS.Send", tags: new[] { "sms" })]
         [OpenApiSecurity("app_auth", SecuritySchemeType.Http, Scheme = OpenApiSecuritySchemeType.Basic, Description = "Toast API basic auth")]
         [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(SendMessagesRequestBody), Example = typeof(SendMessagesRequestBodyModelExample), Description = "Message payload to send")]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(SendMessagesResponse),  Example = typeof(SendMessagesResponseModelExample), Description = "The OK response")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(SendMessagesResponseBody),  Example = typeof(SendMessagesResponseModelExample), Description = "The OK response")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.BadRequest, Description = "The input was invalid")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "The service has got an unexpected error")]
         public async Task<IActionResult> Run(
@@ -89,7 +89,7 @@ namespace Toast.Sms.Triggers
             this._http.DefaultRequestHeaders.Add("X-Secret-Key", headers.SecretKey);
             var result = await this._http.PostAsync(requestUrl, content).ConfigureAwait(false);
 
-            var resultPayload = await result.Content.ReadAsAsync<SendMessagesResponse>().ConfigureAwait(false);
+            var resultPayload = await result.Content.ReadAsAsync<SendMessagesResponseBody>().ConfigureAwait(false);
 
             return new OkObjectResult(resultPayload);
         }
