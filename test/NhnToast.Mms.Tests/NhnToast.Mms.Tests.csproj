@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <AssemblyName>Toast.Mms.Tests</AssemblyName>
+    <RootNamespace>Toast.Mms.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="3.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="*" />
+    <PackageReference Include="FluentValidation" Version="*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="Moq" Version="*" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.*" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.*" />
+    <PackageReference Include="WorldDomination.HttpClient.Helpers" Version="7.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\nt-mms\NhnToast.Mms.csproj" />
+    <ProjectReference Include="..\NhnToast.Tests.Common\NhnToast.Tests.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="test.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

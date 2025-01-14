@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 using FluentValidation;
 
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+
 using Toast.Common.Exceptions;
+using Toast.Common.Validators;
 using Toast.Sms.Models;
 
 namespace Toast.Sms.Validators
@@ -42,11 +44,15 @@ namespace Toast.Sms.Validators
     /// </summary>
     public class ListMessageStatusRequestQueryValidator : AbstractValidator<ListMessageStatusRequestQueries>
     {
+        private readonly IRegexDateTimeWrapper _regex;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ListMessageStatusRequestQueryValidator"/> class.
         /// </summary>
-        public ListMessageStatusRequestQueryValidator()
+        public ListMessageStatusRequestQueryValidator(IRegexDateTimeWrapper regex)
         {
+            this._regex = regex.ThrowIfNullOrDefault();
+
             this.RuleFor(p => p.StartUpdateDate).Must(IsValidDateFormat).NotEmpty();
             this.RuleFor(p => p.EndUpdateDate).Must(IsValidDateFormat).NotEmpty().GreaterThan(q => q.StartUpdateDate);
             When(p => p.MessageType != null, () =>
@@ -55,20 +61,13 @@ namespace Toast.Sms.Validators
             });
             this.RuleFor(p => p.PageNumber).GreaterThan(0);
             this.RuleFor(p => p.PageSize).GreaterThan(0);
-
         }
-        List<string> MsgType = new List<string>() { "SMS", "LMS", "MMS", "AUTH" };
 
         private bool IsValidDateFormat(string date)
         {
-            if (date == null)
-            {
-                return false;
-            }
-            else
-            {
-                return Regex.IsMatch(date, @"^([0-9][0-9][0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]) ([01][0-9]|2[0123]):([0-5][0-9]):([0-5][0-9])$");
-            }   
+            return this._regex.IsMatch(date);
         }
+
+        private List<string> MsgType = new List<string>() { "SMS", "LMS", "MMS", "AUTH" };
     }
 }

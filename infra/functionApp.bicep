@@ -1,17 +1,6 @@
 param name string
 param suffix string = ''
 param location string = resourceGroup().location
-
-@allowed([
-    'dev'
-    'test'
-    'prod'
-
-    'kdy'
-    'kms'
-    'lsw'
-    'pjm'
-])
 param env string = 'dev'
 
 param storageAccountId string
@@ -155,12 +144,12 @@ var appInsights = {
     id: appInsightsId
 }
 var linuxFxVersionMap = {
-    'dotnet': ''
+    dotnet: ''
     'dotnet-isolated': ''
-    'java': 'Java|{0}'
-    'node': 'Node|{0}'
-    'python': 'Python|{0}'
-    'powershell': 'PowerShell|{0}'
+    java: 'Java|{0}'
+    node: 'Node|{0}'
+    python: 'Python|{0}'
+    powershell: 'PowerShell|{0}'
 }
 var functionApp = {
     name: suffix == '' ? format(metadata.longName, 'fncapp', '') : format(metadata.longName, 'fncapp', '-${suffix}')

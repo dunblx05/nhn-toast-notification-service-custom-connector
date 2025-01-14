@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.6.18.56646",
-      "templateHash": "13562727815394432639"
+      "version": "0.9.1.41621",
+      "templateHash": "12985671385110900203"
     }
   },
   "parameters": {
@@ -18,16 +18,7 @@
     },
     "env": {
       "type": "string",
-      "defaultValue": "dev",
-      "allowedValues": [
-        "dev",
-        "test",
-        "prod",
-        "kdy",
-        "kms",
-        "lsw",
-        "pjm"
-      ]
+      "defaultValue": "dev"
     },
     "apiMgmtNameValueName": {
       "type": "string"
@@ -172,8 +163,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.6.18.56646",
-              "templateHash": "10031038445999354079"
+              "version": "0.9.1.41621",
+              "templateHash": "17079256107589336499"
             }
           },
           "parameters": {
@@ -186,16 +177,7 @@
             },
             "env": {
               "type": "string",
-              "defaultValue": "dev",
-              "allowedValues": [
-                "dev",
-                "test",
-                "prod",
-                "kdy",
-                "kms",
-                "lsw",
-                "pjm"
-              ]
+              "defaultValue": "dev"
             },
             "apiMgmtNameValueName": {
               "type": "string"
